@@ -52,18 +52,18 @@ const resetIndex = () => {
 };
 
 // update tasks
-const clearCompletedTodo = () => {
-  let taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
-  taskArr = taskArr.filter((todo) => {
-    if (todo.completed !== true) {
-      return true;
-    }
-    return false;
-  });
-  localStorage.setItem('todos', JSON.stringify(taskArr));
-  resetIndex();
-  window.location.reload();
-};
+// const clearCompletedTodo = () => {
+//   let taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
+//   taskArr = taskArr.filter((todo) => {
+//     if (todo.completed !== true) {
+//       return true;
+//     }
+//     return false;
+//   });
+//   localStorage.setItem('todos', JSON.stringify(taskArr));
+//   resetIndex();
+//   window.location.reload();
+// };
 
 const addTodo = (e) => {
   e.preventDefault();
@@ -172,13 +172,23 @@ const addTodo = (e) => {
 form.addEventListener('submit', addTodo);
 
 const clearBtn = document.querySelector('.bottom');
-clearBtn.addEventListener('click', clearCompletedTodo);
+clearBtn.addEventListener('click', () => {
+  let taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
+  taskArr = taskArr.filter((todo) => {
+    if (todo.completed !== true) {
+      return true;
+    }
+    return false;
+  });
+  localStorage.setItem('todos', JSON.stringify(taskArr));
+  resetIndex();
+  window.location.reload();
+});
 
 window.addEventListener('DOMContentLoaded', () => {
   const taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
   if (taskArr.length > 0) {
     taskArr.forEach((todo) => {
-      
       const li = document.createElement('li');
       li.className = 'li-todo';
       const attr = document.createAttribute('data-index');

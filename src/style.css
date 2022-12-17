@@ -53,14 +53,30 @@ main {
   align-self: center;
 }
 
+.fa-ellipsis-v {
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
 .fa-trash {
   display: none;
+}
+
+.show {
+  display: block;
 }
 
 .todo-list {
   margin: 0 auto;
   padding: 0;
   width: 90%;
+}
+
+.edit-task {
+  background: yellow;
 }
 
 .li-todo {

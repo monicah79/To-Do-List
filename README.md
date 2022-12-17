@@ -41,7 +41,7 @@
 
 # 📖 [Webpack-project] <a name="list structure"></a>
 
-**[Webpack-project]** The project is the structure of to  do list,where we added the completed task and the to do list.
+**[Webpack-project]** The project is the structure of to  do list,where we added the completed task and the to do list.Add implentented add and remove functionality
 
 ## 🛠 Built With <a name="built-with">Html/css, Javascript and bootstrap</a>
 
@@ -49,7 +49,7 @@
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 
-- [Live Demo Link](https://monicah79.github.io/webpack-project/)
+- [Live Demo Link](https://monicah79.github.io/To-Do-List/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

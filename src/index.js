@@ -51,20 +51,6 @@ const resetIndex = () => {
   window.location.reload();
 };
 
-// update tasks
-// const clearCompletedTodo = () => {
-//   let taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
-//   taskArr = taskArr.filter((todo) => {
-//     if (todo.completed !== true) {
-//       return true;
-//     }
-//     return false;
-//   });
-//   localStorage.setItem('todos', JSON.stringify(taskArr));
-//   resetIndex();
-//   window.location.reload();
-// };
-
 const addTodo = (e) => {
   e.preventDefault();
   const taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];

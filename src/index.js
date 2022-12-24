@@ -1,4 +1,6 @@
+import loadList from './modules/load-list.js';
 import './style.css';
+import { delFromLocalStorage, changeLocalStorage, resetIndex } from './modules/local-storage.js';
 
 const form = document.querySelector('.input-form');
 const ul = document.querySelector('.todo-list');
@@ -10,31 +12,6 @@ const saveToLocalStorage = (task, completed, index) => {
   const taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
 
   taskArr.push(todo);
-  localStorage.setItem('todos', JSON.stringify(taskArr));
-};
-
-const delFromLocalStorage = (index) => {
-  let taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
-
-  taskArr = taskArr.filter((item) => {
-    if (item.index !== index) {
-      return true;
-    }
-    return false;
-  });
-
-  localStorage.setItem('todos', JSON.stringify(taskArr));
-};
-
-const changeLocalStorage = (task, status, index) => {
-  let taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
-  taskArr = taskArr.map((item) => {
-    if (item.index === index) {
-      item.task = task;
-      item.completed = status;
-    }
-    return item;
-  });
   localStorage.setItem('todos', JSON.stringify(taskArr));
 };
 
@@ -52,7 +29,7 @@ const addTodo = (e) => {
     attr.value = index;
     li.setAttributeNode(attr);
     li.innerHTML = `<div class="check">
-    <input type="checkbox">
+    <input type="checkbox" class="checkbox">
     <div class="parent"><p class="para">${task}</p></div>
 </div>
 <div>
@@ -68,6 +45,40 @@ const addTodo = (e) => {
     saveToLocalStorage(task, completed, index);
 
     input.value = '';
+
+    // checkbox
+    const checkboxes = li.querySelectorAll('.checkbox');
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', (e) => {
+        if (checkbox.checked === true) {
+          const todo = e.target.nextElementSibling.childNodes[0];
+          todo.style.textDecoration = 'line-through';
+          const todoLi = e.target.parentElement.parentElement;
+          const { index } = todoLi.dataset;
+          const taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
+          taskArr.filter((todo) => {
+            if (todo.index === index) {
+              todo.completed = true;
+            }
+            return false;
+          });
+          localStorage.setItem('todos', JSON.stringify(taskArr));
+        } else {
+          const todo = e.target.nextElementSibling.childNodes[0];
+          todo.style.textDecoration = 'none';
+          const todoLi = e.target.parentElement.parentElement;
+          const { index } = todoLi.dataset;
+          const taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
+          taskArr.filter((todo) => {
+            if (todo.index === index) {
+              todo.completed = false;
+            }
+            return false;
+          });
+          localStorage.setItem('todos', JSON.stringify(taskArr));
+        }
+      });
+    });
 
     // delete task
     const optionBtn = li.querySelector('.fa-ellipsis-v');
@@ -99,21 +110,34 @@ const addTodo = (e) => {
         changeLocalStorage(edit.textContent, completed, editIndex);
       });
     });
-    trash.addEventListener('click', () => {
+    trash.addEventListener('click', (e) => {
       const task = e.target.parentElement.parentElement;
-
       const { index } = task.dataset;
-
       ul.removeChild(li);
-      //   if (ul.children.length === 0) {
-      //     listContainer.classList.remove('show-container');
-      //   }
       delFromLocalStorage(index);
     });
   }
 };
 
 form.addEventListener('submit', addTodo);
+
+const clearBtn = document.querySelector('.bottom');
+clearBtn.addEventListener('click', () => {
+  let taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
+  taskArr = taskArr.filter((todo) => {
+    if (todo.completed !== true) {
+      return true;
+    }
+    return false;
+  });
+  localStorage.setItem('todos', JSON.stringify(taskArr));
+  resetIndex();
+  window.location.reload();
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  loadList();
+});
 
 function createNewListItem(task) {
   const li = document.createElement('li');

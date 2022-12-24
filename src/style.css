@@ -76,7 +76,7 @@ main {
 }
 
 .edit-task {
-  background: yellow;
+  background: rgb(255, 255, 0);
 }
 
 .li-todo {

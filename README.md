@@ -19,18 +19,12 @@
 
 - [📖 About the Project](#about-project)
   - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
   - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Install](#install)
-  - [Usage](#usage)
-  - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
@@ -61,7 +55,14 @@ To get a local copy up and running follow these simple example steps.
 git & browser
 
 ### Setup
-clone repository
+clone repository using this instructions:
+  -git clone https://github.com/monicah79/To-Do-List.git
+  - cd to-do-list
+  -code .
+
+### Install
+  -install npm and other dependansies
+
 
 ## Authors
 
@@ -76,7 +77,7 @@ clone repository
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/monicah79/To-Do-List/issues).
 
 ## Show your support
 

@@ -173,7 +173,6 @@ clearBtn.addEventListener('click', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
   const taskArr = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
-  console.log(taskArr)
   if (taskArr.length > 0) {
     taskArr.forEach((todo) => {
       const li = document.createElement('li');
@@ -189,7 +188,7 @@ window.addEventListener('DOMContentLoaded', () => {
     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
     <i class="fa fa-trash" aria-hidden="true"></i>
 </div>`;
-     ul.appendChild(li)
+      ul.appendChild(li);
       const checkboxes = li.querySelectorAll('.checkbox');
       checkboxes.forEach((checkbox) => {
         checkbox.addEventListener('change', (e) => {
